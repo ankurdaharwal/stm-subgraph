@@ -1,0 +1,125 @@
+specVersion: 0.0.2
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: StMaster
+    network: bsc
+    source:
+      address: "0xF55bac3F0B1904844B1E61c111D998AECf7d1fA5"
+      abi: StMaster
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - AddedBatchMetadata
+        - AddedCcyType
+        - AddedSecTokenType
+        - Approval
+        - Burned
+        - BurnedFullSecToken
+        - BurnedPartialSecToken
+        - CcyFundedLedger
+        - CcyWithdrewLedger
+        - Combine
+        - FutureOpenInterest
+        - IssuanceSubscribed
+        - Minted
+        - MintedSecToken
+        - ReservedLedgerCcy
+        - SetBatchOriginatorFee_Currency
+        - SetBatchOriginatorFee_Token
+        - SetFeeCcyBps
+        - SetFeeCcyFix
+        - SetFeeCcyMax
+        - SetFeeCcyMin
+        - SetFeeCcyPerMillion
+        - SetFeeTokBps
+        - SetFeeTokFix
+        - SetFeeTokMax
+        - SetFeeTokMin
+        - SetFutureFeePerContract
+        - SetFutureVariationMargin
+        - SetInitialMarginOverride
+        - TakePay2
+        - TradedCcyTok
+        - Transfer
+        - TransferedFullSecToken
+        - TransferedLedgerCcy
+        - TransferedPartialSecToken
+      abis:
+        - name: StMaster
+          file: ./abis/StMaster.json
+      eventHandlers:
+        - event: AddedBatchMetadata(indexed uint256,string,string)
+          handler: handleAddedBatchMetadata
+        - event: AddedCcyType(uint256,string,string)
+          handler: handleAddedCcyType
+        - event: AddedSecTokenType(uint256,string,uint8,uint64,uint256,uint256,uint16,uint16)
+          handler: handleAddedSecTokenType
+        - event: Approval(indexed address,indexed address,uint256)
+          handler: handleApproval
+        - event: Burned(uint256,indexed address,uint256)
+          handler: handleBurned
+        - event: BurnedFullSecToken(indexed uint256,uint256,indexed address,uint256)
+          handler: handleBurnedFullSecToken
+        - event: BurnedPartialSecToken(indexed uint256,uint256,indexed address,uint256)
+          handler: handleBurnedPartialSecToken
+        - event: CcyFundedLedger(uint256,indexed address,int256,string)
+          handler: handleCcyFundedLedger
+        - event: CcyWithdrewLedger(uint256,indexed address,int256,string)
+          handler: handleCcyWithdrewLedger
+        - event: Combine(indexed address,uint256,uint256)
+          handler: handleCombine
+        - event: FutureOpenInterest(indexed address,indexed address,uint256,uint256,uint256,uint256,uint256,uint256)
+          handler: handleFutureOpenInterest
+        - event: IssuanceSubscribed(indexed address,indexed address,uint256,uint256,uint256,uint256)
+          handler: handleIssuanceSubscribed
+        - event: Minted(indexed uint256,uint256,indexed address,uint256,uint256)
+          handler: handleMinted
+        - event: MintedSecToken(indexed uint256,indexed uint256,uint256,indexed address,uint256)
+          handler: handleMintedSecToken
+        - event: ReservedLedgerCcy(indexed address,uint256,uint256)
+          handler: handleReservedLedgerCcy
+        - event: SetBatchOriginatorFee_Currency(indexed uint256,uint16)
+          handler: handleSetBatchOriginatorFee_Currency
+        - event: SetBatchOriginatorFee_Token(indexed uint256,(uint256,uint256,uint256,uint256,uint256,bool))
+          handler: handleSetBatchOriginatorFee_Token
+        - event: SetFeeCcyBps(uint256,indexed address,uint256)
+          handler: handleSetFeeCcyBps
+        - event: SetFeeCcyFix(uint256,indexed address,uint256)
+          handler: handleSetFeeCcyFix
+        - event: SetFeeCcyMax(uint256,indexed address,uint256)
+          handler: handleSetFeeCcyMax
+        - event: SetFeeCcyMin(uint256,indexed address,uint256)
+          handler: handleSetFeeCcyMin
+        - event: SetFeeCcyPerMillion(uint256,indexed address,uint256)
+          handler: handleSetFeeCcyPerMillion
+        - event: SetFeeTokBps(uint256,indexed address,uint256)
+          handler: handleSetFeeTokBps
+        - event: SetFeeTokFix(uint256,indexed address,uint256)
+          handler: handleSetFeeTokFix
+        - event: SetFeeTokMax(uint256,indexed address,uint256)
+          handler: handleSetFeeTokMax
+        - event: SetFeeTokMin(uint256,indexed address,uint256)
+          handler: handleSetFeeTokMin
+        - event: SetFutureFeePerContract(uint256,uint256)
+          handler: handleSetFutureFeePerContract
+        - event: SetFutureVariationMargin(uint256,uint16)
+          handler: handleSetFutureVariationMargin
+        - event: SetInitialMarginOverride(uint256,indexed address,uint16)
+          handler: handleSetInitialMarginOverride
+        - event: TakePay2(indexed address,indexed address,uint256,uint256,uint256,uint256)
+          handler: handleTakePay2
+        - event: TradedCcyTok(uint256,uint256,uint256,indexed address,indexed address,uint256,uint256,uint256)
+          handler: handleTradedCcyTok
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
+        - event: TransferedFullSecToken(indexed address,indexed address,indexed uint256,uint256,uint256,uint8)
+          handler: handleTransferedFullSecToken
+        - event: TransferedLedgerCcy(indexed address,indexed address,uint256,uint256,uint8)
+          handler: handleTransferedLedgerCcy
+        - event: TransferedPartialSecToken(indexed address,indexed address,indexed uint256,uint256,uint256,uint256,uint8)
+          handler: handleTransferedPartialSecToken
+      file: ./src/mapping.ts

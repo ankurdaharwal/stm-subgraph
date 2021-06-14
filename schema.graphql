@@ -1,0 +1,335 @@
+type AddedBatchMetadata @entity {
+  id: ID!
+  batchId: BigInt!
+  metaKeys: String!
+  metaValues: String!
+}
+
+type AddedCcyType @entity {
+  id: ID!
+  name: String!
+  unit: String!
+}
+
+type AddedSecTokenType @entity {
+  id: ID!
+  name: String!
+  settlementType: Int!
+  expiryTimestamp: BigInt!
+  underlyerTypeId: BigInt!
+  refCcyId: BigInt!
+  initMarginBips: BigInt!
+  varMarginBips: BigInt!
+}
+
+type Approval @entity {
+  id: ID!
+  owner: String!
+  spender: String!
+  value: BigInt!
+}
+
+type Burned @entity {
+  id: ID!
+  tokTypeId: BigInt!
+  from: String!
+  burnedQty: BigInt!
+}
+
+type BurnedFullSecToken @entity {
+  id: ID!
+  stId: BigInt!
+  tokTypeId: BigInt!
+  from: String!
+  burnedQty: BigInt!
+}
+
+type BurnedPartialSecToken @entity {
+  id: ID!
+  stId: BigInt!
+  tokTypeId: BigInt!
+  from: String!
+  burnedQty: BigInt!
+}
+
+type CcyFundedLedger @entity {
+  id: ID!
+  ccyTypeId: BigInt!
+  to: String!
+  amount: BigInt!
+  desc: String!
+}
+
+type CcyWithdrewLedger @entity {
+  id: ID!
+  ccyTypeId: BigInt!
+  from: String!
+  amount: BigInt!
+  desc: String!
+}
+
+type SetFutureVariationMargin @entity {
+  id: ID!
+  tokTypeId: BigInt!
+  varMarginBips: BigInt!
+}
+
+type SetFutureFeePerContract @entity {
+  id: ID!
+  tokTypeId: BigInt!
+  feePerContract: BigInt!
+}
+
+type Minted @entity {
+  id: ID!
+  batchId: BigInt!
+  tokTypeId: BigInt!
+  to: String!
+  mintQty: BigInt!
+  mintSecTokenCount: BigInt!
+}
+
+type MintedSecToken @entity {
+  id: ID!
+  stId: BigInt!
+  batchId: BigInt!
+  tokTypeId: BigInt!
+  to: String!
+  mintedQty: BigInt!
+}
+
+type SetBatchOriginatorFee_Token @entity {
+  id: ID!
+  batchId: BigInt!
+  originatorFee: FeeStruct
+}
+
+type SetBatchOriginatorFee_Currency @entity {
+  id: ID!
+  batchId: BigInt!
+  origCcyFee_percBips_ExFee: BigInt!
+}
+
+type TransferedFullSecToken @entity {
+  id: ID!
+  from: String!
+  to: String!
+  stId: BigInt!
+  mergedToSecTokenId: BigInt
+  qty: BigInt!
+  transferType: TransferType!
+}
+
+type TransferedPartialSecToken @entity {
+  id: ID!
+  from: String!
+  to: String!
+  splitFromSecTokenId: BigInt!
+  newSecTokenId: BigInt!
+  mergedToSecTokenId: BigInt!
+  qty: BigInt!
+  transferType: TransferType!
+}
+
+type TradedCcyTok @entity {
+  id: ID!
+  ccyTypeId: BigInt!
+  ccyAmount: BigInt!
+  tokTypeId: BigInt!
+  from: String!
+  to: String!
+  tokQty: BigInt!
+  ccyFeeFrom: BigInt!
+  ccyFeeTo: BigInt!
+}
+
+type TransferedLedgerCcy @entity {
+  id: ID!
+  from: String!
+  to: String!
+  ccyTypeId: BigInt!
+  amount: BigInt!
+  transferType: TransferType!
+}
+
+type ReservedLedgerCcy @entity {
+  id: ID!
+  ledgerOwner: String!
+  ccyTypeId: BigInt!
+  amount: BigInt!
+}
+
+type SetFeeTokFix @entity {
+  id: ID!
+  ledgerOwner: String!
+  tokTypeId: BigInt!
+  fee_tokenQty_Fixed: BigInt!
+}
+
+type SetFeeCcyFix @entity {
+  id: ID!
+  ledgerOwner: String!
+  ccyTypeId: BigInt!
+  fee_ccy_Fixed: BigInt!
+}
+
+type SetFeeTokBps @entity {
+  id: ID!
+  ledgerOwner: String!
+  tokTypeId: BigInt!
+  fee_token_PercBips: BigInt!
+}
+
+type SetFeeCcyBps @entity {
+  id: ID!
+  ledgerOwner: String!
+  ccyTypeId: BigInt!
+  fee_ccy_PercBips: BigInt!
+}
+
+type SetFeeTokMin @entity {
+  id: ID!
+  ledgerOwner: String!
+  tokTypeId: BigInt!
+  fee_token_Min: BigInt!
+}
+
+type SetFeeCcyMin @entity {
+  id: ID!
+  ledgerOwner: String!
+  ccyTypeId: BigInt!
+  fee_ccy_Min: BigInt!
+}
+
+type SetFeeTokMax @entity {
+  id: ID!
+  ledgerOwner: String!
+  tokTypeId: BigInt!
+  fee_token_Max: BigInt!
+}
+
+type SetFeeCcyMax @entity {
+  id: ID!
+  ledgerOwner: String!
+  ccyTypeId: BigInt!
+  fee_ccy_Max: BigInt!
+}
+
+type SetFeeCcyPerMillion @entity {
+  id: ID!
+  ledgerOwner: String!
+  ccyTypeId: BigInt!
+  fee_ccy_perMillion: BigInt!
+}
+
+type Transfer @entity {
+  id: ID!
+  from: String!
+  to: String!
+  value: BigInt!
+}
+
+type IssuanceSubscribed @entity {
+  id: ID!
+  subscriber: String!
+  issuer: String!
+  weiSent: BigInt!
+  weiChange: BigInt!
+  tokensSubscribed: BigInt!
+  weiPrice: BigInt!
+}
+
+type IssuerPaymentProcessed @entity {
+  id: ID!
+  paymentId: BigInt!
+  issuer: String!
+  totalAmount: BigInt!
+  totalBatchCount: BigInt!
+}
+
+type IssuerPaymentBatchProcessed @entity {
+  id: ID!
+  paymentId: BigInt!
+  paymentBatchId: BigInt!
+  issuer: String!
+  weiSent: BigInt!
+  weiChange: BigInt!
+}
+
+type SubscriberPaid @entity {
+  id: ID!
+  paymentId: BigInt!
+  paymentBatchId: BigInt!
+  issuer: String!
+  subscriber: String!
+  amount: BigInt!
+}
+
+type FutureOpenInterest @entity {
+  id: ID!
+  shortStId: BigInt!
+  long: String!
+  short: String!
+  tokTypeId: BigInt!
+  qty: BigInt!
+  price: BigInt!
+  feeLong: BigInt!
+  feeShort: BigInt!
+}
+
+type SetInitialMarginOverride @entity {
+  id: ID!
+  ledgerOwner: String!
+  tokTypeId: BigInt!
+  initMarginBips: BigInt!
+}
+
+type TakePay2 @entity {
+  id: ID!
+  from: String!
+  to: String!
+  ccyId: BigInt!
+  delta: BigInt!
+  done: BigInt!
+  fee: BigInt!
+}
+
+type Combine @entity {
+  id: ID!
+  masterStId: BigInt!
+  to: String!
+  countTokensCombined: BigInt!
+}
+
+enum FeeStruct {
+  fee_fixed
+  fee_percBips
+  fee_min
+  fee_max
+  ccy_perMillion
+  ccy_mirrorFee
+}
+
+enum TransferType {
+  Undefined
+  User
+  ExchangeFee
+  OriginatorFee
+  TakePayFee
+  SettleTake
+  SettlePay
+  MintFee
+  BurnFee
+  WithdrawFee
+  DepositFee
+  DataFee
+  OtherFee1
+  OtherFee2
+  OtherFee3
+  OtherFee4
+  OtherFee5
+  RelatedTransfer
+  Adjustment
+  ERC20
+  Subscription
+}

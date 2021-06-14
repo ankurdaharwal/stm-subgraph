@@ -1,0 +1,2481 @@
+[
+  {
+    "inputs": [
+      { "internalType": "address[]", "name": "_owners", "type": "address[]" },
+      {
+        "internalType": "enum StructLib.ContractType",
+        "name": "_contractType",
+        "type": "uint8"
+      },
+      { "internalType": "string", "name": "_contractName", "type": "string" },
+      { "internalType": "string", "name": "_contractVer", "type": "string" },
+      { "internalType": "string", "name": "_contractUnit", "type": "string" }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "constructor",
+    "signature": "constructor"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "batchId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "string",
+        "name": "key",
+        "type": "string"
+      },
+      {
+        "indexed": false,
+        "internalType": "string",
+        "name": "value",
+        "type": "string"
+      }
+    ],
+    "name": "AddedBatchMetadata",
+    "type": "event",
+    "signature": "0xfbd723991cdc2f11ead8d80d71a042927e691a48de135dd906ea1b9bf26f881c"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "id",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "string",
+        "name": "name",
+        "type": "string"
+      },
+      {
+        "indexed": false,
+        "internalType": "string",
+        "name": "unit",
+        "type": "string"
+      }
+    ],
+    "name": "AddedCcyType",
+    "type": "event",
+    "signature": "0x41c4a4be5d1fed810ab0ace2ffe78022538a72356773c24ed010e06bdf6454b7"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "id",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "string",
+        "name": "name",
+        "type": "string"
+      },
+      {
+        "indexed": false,
+        "internalType": "enum StructLib.SettlementType",
+        "name": "settlementType",
+        "type": "uint8"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint64",
+        "name": "expiryTimestamp",
+        "type": "uint64"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "underlyerTypeId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "refCcyId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint16",
+        "name": "initMarginBips",
+        "type": "uint16"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint16",
+        "name": "varMarginBips",
+        "type": "uint16"
+      }
+    ],
+    "name": "AddedSecTokenType",
+    "type": "event",
+    "signature": "0xba54e19bfd2d1b28e276b1942689686bdcd811ef3cc5e3660ed6bd97aa6f7a81"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "owner",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "spender",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "value",
+        "type": "uint256"
+      }
+    ],
+    "name": "Approval",
+    "type": "event",
+    "signature": "0x8c5be1e5ebec7d5bd14f71427d1e84f3dd0314c0f7b2291e5b200ac8c7c3b925"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "tokTypeId",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "from",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "burnedQty",
+        "type": "uint256"
+      }
+    ],
+    "name": "Burned",
+    "type": "event",
+    "signature": "0x7a6396f9141e42bbd82eddb43e30077ef07aaafcd4ee3dfbd6adb1dca8f2445a"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "stId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "tokTypeId",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "from",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "burnedQty",
+        "type": "uint256"
+      }
+    ],
+    "name": "BurnedFullSecToken",
+    "type": "event",
+    "signature": "0xfba96a91928ad32b5f216e958fcd93967ddd60ec36a0b378731af003e8c53c07"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "stId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "tokTypeId",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "from",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "burnedQty",
+        "type": "uint256"
+      }
+    ],
+    "name": "BurnedPartialSecToken",
+    "type": "event",
+    "signature": "0x6d815fbfec0f1b6ba39d14c2ff79e523818d9612bbc5e6f871561f14d572a2fd"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "ccyTypeId",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "to",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "int256",
+        "name": "amount",
+        "type": "int256"
+      },
+      {
+        "indexed": false,
+        "internalType": "string",
+        "name": "desc",
+        "type": "string"
+      }
+    ],
+    "name": "CcyFundedLedger",
+    "type": "event",
+    "signature": "0x55148ee4002e0f7afb091e704338fef055631e411e64f9c92fc15ff73090b55b"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "ccyTypeId",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "from",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "int256",
+        "name": "amount",
+        "type": "int256"
+      },
+      {
+        "indexed": false,
+        "internalType": "string",
+        "name": "desc",
+        "type": "string"
+      }
+    ],
+    "name": "CcyWithdrewLedger",
+    "type": "event",
+    "signature": "0x44031b09f16d24786159482d794dafec9b28074cd1945f05a898f0b19678485d"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "to",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "masterStId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "countTokensCombined",
+        "type": "uint256"
+      }
+    ],
+    "name": "Combine",
+    "type": "event",
+    "signature": "0x95b25302295d0a41a2429744f91ae887d3f9de0386d99df8aa86e3cc40932410"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "long",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "short",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "shortStId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "tokTypeId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "qty",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "price",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "feeLong",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "feeShort",
+        "type": "uint256"
+      }
+    ],
+    "name": "FutureOpenInterest",
+    "type": "event",
+    "signature": "0xb29dbd43e5d723a7835a26d69b6bb580aa12ea8256468fdbbb814f19be29fb2f"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "subscriber",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "issuer",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "weiSent",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "weiChange",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "tokensSubscribed",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "weiPrice",
+        "type": "uint256"
+      }
+    ],
+    "name": "IssuanceSubscribed",
+    "type": "event",
+    "signature": "0x62f4ccad4119c8530afc23a03bbb5dea277a534ef8b83e73c7bc440aa4be557b"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "batchId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "tokTypeId",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "to",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "mintQty",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "mintSecTokenCount",
+        "type": "uint256"
+      }
+    ],
+    "name": "Minted",
+    "type": "event",
+    "signature": "0xa6fab0f8def4cda731cc57e1237e5c4cdd5afc296a84c60accd4c7848f7bf21e"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "stId",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "batchId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "tokTypeId",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "to",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "mintedQty",
+        "type": "uint256"
+      }
+    ],
+    "name": "MintedSecToken",
+    "type": "event",
+    "signature": "0x3736274caf31d027e6442c5f8bc60eacbcb0529cc8850efbac9e9ec75e0cac09"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "ledgerOwner",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "ccyTypeId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "amount",
+        "type": "uint256"
+      }
+    ],
+    "name": "ReservedLedgerCcy",
+    "type": "event",
+    "signature": "0xc7aac4d7137cffd859c3d987fa34456f419f0ecd79b5e18c018692f478501b42"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "batchId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint16",
+        "name": "origCcyFee_percBips_ExFee",
+        "type": "uint16"
+      }
+    ],
+    "name": "SetBatchOriginatorFee_Currency",
+    "type": "event",
+    "signature": "0xf176362151104fb272ca577b03bc69a4e8de88bcbb69d94a90631c7edfd52b75"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "batchId",
+        "type": "uint256"
+      },
+      {
+        "components": [
+          { "internalType": "uint256", "name": "fee_fixed", "type": "uint256" },
+          {
+            "internalType": "uint256",
+            "name": "fee_percBips",
+            "type": "uint256"
+          },
+          { "internalType": "uint256", "name": "fee_min", "type": "uint256" },
+          { "internalType": "uint256", "name": "fee_max", "type": "uint256" },
+          {
+            "internalType": "uint256",
+            "name": "ccy_perMillion",
+            "type": "uint256"
+          },
+          { "internalType": "bool", "name": "ccy_mirrorFee", "type": "bool" }
+        ],
+        "indexed": false,
+        "internalType": "struct StructLib.SetFeeArgs",
+        "name": "originatorFee",
+        "type": "tuple"
+      }
+    ],
+    "name": "SetBatchOriginatorFee_Token",
+    "type": "event",
+    "signature": "0x39edd42be0e69614e544199baf07f3ac029ba4c1957b20585159524a2a04a965"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "ccyTypeId",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "ledgerOwner",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "fee_ccy_PercBips",
+        "type": "uint256"
+      }
+    ],
+    "name": "SetFeeCcyBps",
+    "type": "event",
+    "signature": "0x54d1b233af067308606d01cc6cd408f64a17eefd2167390cad56ef2a25dc7e57"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "ccyTypeId",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "ledgerOwner",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "fee_ccy_Fixed",
+        "type": "uint256"
+      }
+    ],
+    "name": "SetFeeCcyFix",
+    "type": "event",
+    "signature": "0xa071cd8399da6dcdf131801002978a2becb46c72f6b39aab73d79b35d0c22766"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "ccyTypeId",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "ledgerOwner",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "fee_ccy_Max",
+        "type": "uint256"
+      }
+    ],
+    "name": "SetFeeCcyMax",
+    "type": "event",
+    "signature": "0xba09f2fd17905eb607a5a7e3de119ddfffb3db23eb74010ee71ebab7de05c24e"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "ccyTypeId",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "ledgerOwner",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "fee_ccy_Min",
+        "type": "uint256"
+      }
+    ],
+    "name": "SetFeeCcyMin",
+    "type": "event",
+    "signature": "0x26cd816998b6d876bbe931b84e189e11df3e14159f747c1f436e8bfd36793dfd"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "ccyTypeId",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "ledgerOwner",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "fee_ccy_perMillion",
+        "type": "uint256"
+      }
+    ],
+    "name": "SetFeeCcyPerMillion",
+    "type": "event",
+    "signature": "0x1bea42efee0a4715efd6e8ea7faca0c7adb59ecfc2c6cef66b30b0387b3a7adf"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "tokTypeId",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "ledgerOwner",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "fee_token_PercBips",
+        "type": "uint256"
+      }
+    ],
+    "name": "SetFeeTokBps",
+    "type": "event",
+    "signature": "0xd3ed7794f4913f6781024471cfe107fab0e6d099bdb4a46f4d0e1b9fa8ac8aaf"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "tokTypeId",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "ledgerOwner",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "fee_tokenQty_Fixed",
+        "type": "uint256"
+      }
+    ],
+    "name": "SetFeeTokFix",
+    "type": "event",
+    "signature": "0x27dfbad8c1f2e68c7dd96da725d81b803bb61bae1936e28ff1c895aeac8f9b69"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "tokTypeId",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "ledgerOwner",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "fee_token_Max",
+        "type": "uint256"
+      }
+    ],
+    "name": "SetFeeTokMax",
+    "type": "event",
+    "signature": "0xc49f18eed95f9aad04a8af1e0439cccf681f414f925ed81447076e09fde2a0b6"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "tokTypeId",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "ledgerOwner",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "fee_token_Min",
+        "type": "uint256"
+      }
+    ],
+    "name": "SetFeeTokMin",
+    "type": "event",
+    "signature": "0x01e425ece038e3bb70e579d1eece3bb5e64249a1411c0ce9e8e933a35ab61ece"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "tokTypeId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "feePerContract",
+        "type": "uint256"
+      }
+    ],
+    "name": "SetFutureFeePerContract",
+    "type": "event",
+    "signature": "0x0675800837e97816fbbe74b6a752247d55d994cd08cad7dc137624935d8cf718"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "tokTypeId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint16",
+        "name": "varMarginBips",
+        "type": "uint16"
+      }
+    ],
+    "name": "SetFutureVariationMargin",
+    "type": "event",
+    "signature": "0xb693d2d69a8a17cefcdf49ff12e70303f4109f4dc362a341c941eeef519e12fe"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "tokTypeId",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "ledgerOwner",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint16",
+        "name": "initMarginBips",
+        "type": "uint16"
+      }
+    ],
+    "name": "SetInitialMarginOverride",
+    "type": "event",
+    "signature": "0x21444db6e3db50e212454cb9d7757fb41b78ae271f5c6570488eaf5dbf1ae49a"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "from",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "to",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "ccyId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "delta",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "done",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "fee",
+        "type": "uint256"
+      }
+    ],
+    "name": "TakePay2",
+    "type": "event",
+    "signature": "0x54b6188e164df9648f3e5fbe42163935532eb7e8fe1fa93c96bda18c395bd613"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "ccyTypeId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "ccyAmount",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "tokTypeId",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "from",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "to",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "tokQty",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "ccyFeeFrom",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "ccyFeeTo",
+        "type": "uint256"
+      }
+    ],
+    "name": "TradedCcyTok",
+    "type": "event",
+    "signature": "0x8031887ba06c1506fadfb360570312162517eb2549c06be8a14db512acd593ad"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "from",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "to",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "value",
+        "type": "uint256"
+      }
+    ],
+    "name": "Transfer",
+    "type": "event",
+    "signature": "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "from",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "to",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "stId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "mergedToSecTokenId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "qty",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "enum StMaster.TransferType",
+        "name": "transferType",
+        "type": "uint8"
+      }
+    ],
+    "name": "TransferedFullSecToken",
+    "type": "event",
+    "signature": "0xe93a3adc515b67f7fad2afcb5a658457144d55fd6e64b6cc10552ff200228b85"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "from",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "to",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "ccyTypeId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "amount",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "enum StMaster.TransferType",
+        "name": "transferType",
+        "type": "uint8"
+      }
+    ],
+    "name": "TransferedLedgerCcy",
+    "type": "event",
+    "signature": "0x2f0dcbdfa4405a278cf3213877560955435ba31e14ad13a4d06016ce448e8ffb"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "from",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "to",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "splitFromSecTokenId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "newSecTokenId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "mergedToSecTokenId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "qty",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "enum StMaster.TransferType",
+        "name": "transferType",
+        "type": "uint8"
+      }
+    ],
+    "name": "TransferedPartialSecToken",
+    "type": "event",
+    "signature": "0x2207757d8eb0a8d433ff17021081f5336e9a0628f386963ef0529a6238aac75f"
+  },
+  {
+    "inputs": [
+      { "internalType": "string", "name": "name", "type": "string" },
+      { "internalType": "string", "name": "unit", "type": "string" },
+      { "internalType": "uint16", "name": "decimals", "type": "uint16" }
+    ],
+    "name": "addCcyType",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function",
+    "signature": "0xc8d49a06"
+  },
+  {
+    "inputs": [
+      { "internalType": "uint64", "name": "batchId", "type": "uint64" },
+      { "internalType": "string", "name": "metaKeyNew", "type": "string" },
+      { "internalType": "string", "name": "metaValueNew", "type": "string" }
+    ],
+    "name": "addMetaSecTokenBatch",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function",
+    "signature": "0x62bcf387"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "ledgerEntryOwner",
+        "type": "address"
+      },
+      { "internalType": "uint64", "name": "batchId", "type": "uint64" },
+      { "internalType": "uint256", "name": "stId", "type": "uint256" },
+      { "internalType": "uint256", "name": "tokTypeId", "type": "uint256" },
+      { "internalType": "int64", "name": "mintedQty", "type": "int64" },
+      { "internalType": "int64", "name": "currentQty", "type": "int64" },
+      { "internalType": "int128", "name": "ft_price", "type": "int128" },
+      {
+        "internalType": "int128",
+        "name": "ft_lastMarkPrice",
+        "type": "int128"
+      },
+      {
+        "internalType": "address",
+        "name": "ft_ledgerOwner",
+        "type": "address"
+      },
+      { "internalType": "int128", "name": "ft_PL", "type": "int128" }
+    ],
+    "name": "addSecToken",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function",
+    "signature": "0x594161f8"
+  },
+  {
+    "inputs": [
+      { "internalType": "string", "name": "name", "type": "string" },
+      {
+        "internalType": "enum StructLib.SettlementType",
+        "name": "settlementType",
+        "type": "uint8"
+      },
+      {
+        "components": [
+          {
+            "internalType": "uint64",
+            "name": "expiryTimestamp",
+            "type": "uint64"
+          },
+          {
+            "internalType": "uint256",
+            "name": "underlyerTypeId",
+            "type": "uint256"
+          },
+          { "internalType": "uint256", "name": "refCcyId", "type": "uint256" },
+          {
+            "internalType": "uint16",
+            "name": "initMarginBips",
+            "type": "uint16"
+          },
+          {
+            "internalType": "uint16",
+            "name": "varMarginBips",
+            "type": "uint16"
+          },
+          {
+            "internalType": "uint16",
+            "name": "contractSize",
+            "type": "uint16"
+          },
+          {
+            "internalType": "uint128",
+            "name": "feePerContract",
+            "type": "uint128"
+          }
+        ],
+        "internalType": "struct StructLib.FutureTokenTypeArgs",
+        "name": "ft",
+        "type": "tuple"
+      },
+      {
+        "internalType": "address payable",
+        "name": "cashflowBaseAddr",
+        "type": "address"
+      }
+    ],
+    "name": "addSecTokenType",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function",
+    "signature": "0x6fc351b3"
+  },
+  {
+    "inputs": [
+      { "internalType": "address", "name": "ledgerOwner", "type": "address" },
+      { "internalType": "uint256", "name": "tokTypeId", "type": "uint256" },
+      { "internalType": "int256", "name": "burnQty", "type": "int256" },
+      { "internalType": "uint256[]", "name": "stIds", "type": "uint256[]" }
+    ],
+    "name": "burnTokens",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function",
+    "signature": "0x4737065b"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "ledgerEntryOwner",
+        "type": "address"
+      },
+      {
+        "components": [
+          { "internalType": "uint256", "name": "ccyTypeId", "type": "uint256" },
+          { "internalType": "string", "name": "name", "type": "string" },
+          { "internalType": "string", "name": "unit", "type": "string" },
+          { "internalType": "int256", "name": "balance", "type": "int256" },
+          { "internalType": "int256", "name": "reserved", "type": "int256" }
+        ],
+        "internalType": "struct StructLib.LedgerCcyReturn[]",
+        "name": "ccys",
+        "type": "tuple[]"
+      },
+      {
+        "internalType": "uint256",
+        "name": "spot_sumQtyMinted",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "spot_sumQtyBurned",
+        "type": "uint256"
+      }
+    ],
+    "name": "createLedgerEntry",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function",
+    "signature": "0x564b8528"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "enum StructLib.FundWithdrawType",
+        "name": "direction",
+        "type": "uint8"
+      },
+      { "internalType": "uint256", "name": "ccyTypeId", "type": "uint256" },
+      { "internalType": "int256", "name": "amount", "type": "int256" },
+      { "internalType": "address", "name": "ledgerOwner", "type": "address" },
+      { "internalType": "string", "name": "desc", "type": "string" }
+    ],
+    "name": "fundOrWithdraw",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function",
+    "signature": "0x528f6b54"
+  },
+  {
+    "inputs": [],
+    "name": "getCcyTypes",
+    "outputs": [
+      {
+        "components": [
+          {
+            "components": [
+              { "internalType": "uint256", "name": "id", "type": "uint256" },
+              { "internalType": "string", "name": "name", "type": "string" },
+              { "internalType": "string", "name": "unit", "type": "string" },
+              { "internalType": "uint16", "name": "decimals", "type": "uint16" }
+            ],
+            "internalType": "struct StructLib.Ccy[]",
+            "name": "ccyTypes",
+            "type": "tuple[]"
+          }
+        ],
+        "internalType": "struct StructLib.GetCcyTypesReturn",
+        "name": "",
+        "type": "tuple"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function",
+    "constant": true,
+    "signature": "0x4dc26ae8"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "enum StFees.GetFeeType",
+        "name": "feeType",
+        "type": "uint8"
+      },
+      { "internalType": "uint256", "name": "typeId", "type": "uint256" },
+      { "internalType": "address", "name": "ledgerOwner", "type": "address" }
+    ],
+    "name": "getFee",
+    "outputs": [
+      {
+        "components": [
+          { "internalType": "uint256", "name": "fee_fixed", "type": "uint256" },
+          {
+            "internalType": "uint256",
+            "name": "fee_percBips",
+            "type": "uint256"
+          },
+          { "internalType": "uint256", "name": "fee_min", "type": "uint256" },
+          { "internalType": "uint256", "name": "fee_max", "type": "uint256" },
+          {
+            "internalType": "uint256",
+            "name": "ccy_perMillion",
+            "type": "uint256"
+          },
+          { "internalType": "bool", "name": "ccy_mirrorFee", "type": "bool" }
+        ],
+        "internalType": "struct StructLib.SetFeeArgs",
+        "name": "",
+        "type": "tuple"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function",
+    "constant": true,
+    "signature": "0xafc6b280"
+  },
+  {
+    "inputs": [
+      { "internalType": "address", "name": "account", "type": "address" }
+    ],
+    "name": "getLedgerEntry",
+    "outputs": [
+      {
+        "components": [
+          { "internalType": "bool", "name": "exists", "type": "bool" },
+          {
+            "components": [
+              { "internalType": "bool", "name": "exists", "type": "bool" },
+              { "internalType": "uint256", "name": "stId", "type": "uint256" },
+              {
+                "internalType": "uint256",
+                "name": "tokTypeId",
+                "type": "uint256"
+              },
+              {
+                "internalType": "string",
+                "name": "tokTypeName",
+                "type": "string"
+              },
+              { "internalType": "uint64", "name": "batchId", "type": "uint64" },
+              { "internalType": "int64", "name": "mintedQty", "type": "int64" },
+              {
+                "internalType": "int64",
+                "name": "currentQty",
+                "type": "int64"
+              },
+              {
+                "internalType": "int128",
+                "name": "ft_price",
+                "type": "int128"
+              },
+              {
+                "internalType": "address",
+                "name": "ft_ledgerOwner",
+                "type": "address"
+              },
+              {
+                "internalType": "int128",
+                "name": "ft_lastMarkPrice",
+                "type": "int128"
+              },
+              { "internalType": "int128", "name": "ft_PL", "type": "int128" }
+            ],
+            "internalType": "struct StructLib.LedgerSecTokenReturn[]",
+            "name": "tokens",
+            "type": "tuple[]"
+          },
+          {
+            "internalType": "uint256",
+            "name": "spot_sumQty",
+            "type": "uint256"
+          },
+          {
+            "components": [
+              {
+                "internalType": "uint256",
+                "name": "ccyTypeId",
+                "type": "uint256"
+              },
+              { "internalType": "string", "name": "name", "type": "string" },
+              { "internalType": "string", "name": "unit", "type": "string" },
+              { "internalType": "int256", "name": "balance", "type": "int256" },
+              { "internalType": "int256", "name": "reserved", "type": "int256" }
+            ],
+            "internalType": "struct StructLib.LedgerCcyReturn[]",
+            "name": "ccys",
+            "type": "tuple[]"
+          },
+          {
+            "internalType": "uint256",
+            "name": "spot_sumQtyMinted",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "spot_sumQtyBurned",
+            "type": "uint256"
+          }
+        ],
+        "internalType": "struct StructLib.LedgerReturn",
+        "name": "",
+        "type": "tuple"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function",
+    "constant": true,
+    "signature": "0xa89a8884"
+  },
+  {
+    "inputs": [
+      { "internalType": "uint256", "name": "mod", "type": "uint256" },
+      { "internalType": "uint256", "name": "n", "type": "uint256" }
+    ],
+    "name": "getLedgerHashcode",
+    "outputs": [{ "internalType": "bytes32", "name": "", "type": "bytes32" }],
+    "stateMutability": "view",
+    "type": "function",
+    "constant": true,
+    "signature": "0x31f17857"
+  },
+  {
+    "inputs": [
+      { "internalType": "uint256", "name": "index", "type": "uint256" }
+    ],
+    "name": "getLedgerOwner",
+    "outputs": [{ "internalType": "address", "name": "", "type": "address" }],
+    "stateMutability": "view",
+    "type": "function",
+    "constant": true,
+    "signature": "0x94436356"
+  },
+  {
+    "inputs": [],
+    "name": "getLedgerOwnerCount",
+    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "stateMutability": "view",
+    "type": "function",
+    "constant": true,
+    "signature": "0xc8d37db2"
+  },
+  {
+    "inputs": [],
+    "name": "getLedgerOwners",
+    "outputs": [
+      { "internalType": "address[]", "name": "", "type": "address[]" }
+    ],
+    "stateMutability": "view",
+    "type": "function",
+    "constant": true,
+    "signature": "0xbcc376c6"
+  },
+  {
+    "inputs": [],
+    "name": "getOwners",
+    "outputs": [
+      { "internalType": "address[]", "name": "", "type": "address[]" }
+    ],
+    "stateMutability": "view",
+    "type": "function",
+    "constant": true,
+    "signature": "0xa0e67e2b"
+  },
+  {
+    "inputs": [{ "internalType": "uint256", "name": "id", "type": "uint256" }],
+    "name": "getSecToken",
+    "outputs": [
+      {
+        "components": [
+          { "internalType": "bool", "name": "exists", "type": "bool" },
+          { "internalType": "uint256", "name": "stId", "type": "uint256" },
+          { "internalType": "uint256", "name": "tokTypeId", "type": "uint256" },
+          { "internalType": "string", "name": "tokTypeName", "type": "string" },
+          { "internalType": "uint64", "name": "batchId", "type": "uint64" },
+          { "internalType": "int64", "name": "mintedQty", "type": "int64" },
+          { "internalType": "int64", "name": "currentQty", "type": "int64" },
+          { "internalType": "int128", "name": "ft_price", "type": "int128" },
+          {
+            "internalType": "address",
+            "name": "ft_ledgerOwner",
+            "type": "address"
+          },
+          {
+            "internalType": "int128",
+            "name": "ft_lastMarkPrice",
+            "type": "int128"
+          },
+          { "internalType": "int128", "name": "ft_PL", "type": "int128" }
+        ],
+        "internalType": "struct StructLib.LedgerSecTokenReturn",
+        "name": "",
+        "type": "tuple"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function",
+    "constant": true,
+    "signature": "0xd32ea8b6"
+  },
+  {
+    "inputs": [
+      { "internalType": "uint256", "name": "batchId", "type": "uint256" }
+    ],
+    "name": "getSecTokenBatch",
+    "outputs": [
+      {
+        "components": [
+          { "internalType": "uint64", "name": "id", "type": "uint64" },
+          {
+            "internalType": "uint256",
+            "name": "mintedTimestamp",
+            "type": "uint256"
+          },
+          { "internalType": "uint256", "name": "tokTypeId", "type": "uint256" },
+          { "internalType": "uint256", "name": "mintedQty", "type": "uint256" },
+          { "internalType": "uint256", "name": "burnedQty", "type": "uint256" },
+          {
+            "internalType": "string[]",
+            "name": "metaKeys",
+            "type": "string[]"
+          },
+          {
+            "internalType": "string[]",
+            "name": "metaValues",
+            "type": "string[]"
+          },
+          {
+            "components": [
+              {
+                "internalType": "uint256",
+                "name": "fee_fixed",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "fee_percBips",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "fee_min",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "fee_max",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "ccy_perMillion",
+                "type": "uint256"
+              },
+              {
+                "internalType": "bool",
+                "name": "ccy_mirrorFee",
+                "type": "bool"
+              }
+            ],
+            "internalType": "struct StructLib.SetFeeArgs",
+            "name": "origTokFee",
+            "type": "tuple"
+          },
+          {
+            "internalType": "uint16",
+            "name": "origCcyFee_percBips_ExFee",
+            "type": "uint16"
+          },
+          {
+            "internalType": "address payable",
+            "name": "originator",
+            "type": "address"
+          }
+        ],
+        "internalType": "struct StructLib.SecTokenBatch",
+        "name": "",
+        "type": "tuple"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function",
+    "constant": true,
+    "signature": "0xf0d9d637"
+  },
+  {
+    "inputs": [],
+    "name": "getSecTokenBatch_MaxId",
+    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "stateMutability": "view",
+    "type": "function",
+    "constant": true,
+    "signature": "0x1af10c6c"
+  },
+  {
+    "inputs": [],
+    "name": "getSecTokenTypes",
+    "outputs": [
+      {
+        "components": [
+          {
+            "components": [
+              { "internalType": "uint256", "name": "id", "type": "uint256" },
+              { "internalType": "string", "name": "name", "type": "string" },
+              {
+                "internalType": "enum StructLib.SettlementType",
+                "name": "settlementType",
+                "type": "uint8"
+              },
+              {
+                "components": [
+                  {
+                    "internalType": "uint64",
+                    "name": "expiryTimestamp",
+                    "type": "uint64"
+                  },
+                  {
+                    "internalType": "uint256",
+                    "name": "underlyerTypeId",
+                    "type": "uint256"
+                  },
+                  {
+                    "internalType": "uint256",
+                    "name": "refCcyId",
+                    "type": "uint256"
+                  },
+                  {
+                    "internalType": "uint16",
+                    "name": "initMarginBips",
+                    "type": "uint16"
+                  },
+                  {
+                    "internalType": "uint16",
+                    "name": "varMarginBips",
+                    "type": "uint16"
+                  },
+                  {
+                    "internalType": "uint16",
+                    "name": "contractSize",
+                    "type": "uint16"
+                  },
+                  {
+                    "internalType": "uint128",
+                    "name": "feePerContract",
+                    "type": "uint128"
+                  }
+                ],
+                "internalType": "struct StructLib.FutureTokenTypeArgs",
+                "name": "ft",
+                "type": "tuple"
+              },
+              {
+                "internalType": "address",
+                "name": "cashflowBaseAddr",
+                "type": "address"
+              }
+            ],
+            "internalType": "struct StructLib.SecTokenTypeReturn[]",
+            "name": "tokenTypes",
+            "type": "tuple[]"
+          }
+        ],
+        "internalType": "struct StructLib.GetSecTokenTypesReturn",
+        "name": "",
+        "type": "tuple"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function",
+    "constant": true,
+    "signature": "0x8e4b3aef"
+  },
+  {
+    "inputs": [],
+    "name": "getSecToken_BaseId",
+    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "stateMutability": "view",
+    "type": "function",
+    "constant": true,
+    "signature": "0x48915229"
+  },
+  {
+    "inputs": [],
+    "name": "getSecToken_MaxId",
+    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "stateMutability": "view",
+    "type": "function",
+    "constant": true,
+    "signature": "0x17519bfd"
+  },
+  {
+    "inputs": [],
+    "name": "getSecToken_totalBurnedQty",
+    "outputs": [
+      { "internalType": "uint256", "name": "count", "type": "uint256" }
+    ],
+    "stateMutability": "view",
+    "type": "function",
+    "constant": true,
+    "signature": "0xc87b462c"
+  },
+  {
+    "inputs": [],
+    "name": "getSecToken_totalMintedQty",
+    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "stateMutability": "view",
+    "type": "function",
+    "constant": true,
+    "signature": "0xac9a3c1f"
+  },
+  {
+    "inputs": [],
+    "name": "getWhitelist",
+    "outputs": [
+      { "internalType": "address[]", "name": "", "type": "address[]" }
+    ],
+    "stateMutability": "view",
+    "type": "function",
+    "constant": true,
+    "signature": "0xd01f63f5"
+  },
+  {
+    "inputs": [
+      {
+        "components": [
+          { "internalType": "uint64", "name": "id", "type": "uint64" },
+          {
+            "internalType": "uint256",
+            "name": "mintedTimestamp",
+            "type": "uint256"
+          },
+          { "internalType": "uint256", "name": "tokTypeId", "type": "uint256" },
+          { "internalType": "uint256", "name": "mintedQty", "type": "uint256" },
+          { "internalType": "uint256", "name": "burnedQty", "type": "uint256" },
+          {
+            "internalType": "string[]",
+            "name": "metaKeys",
+            "type": "string[]"
+          },
+          {
+            "internalType": "string[]",
+            "name": "metaValues",
+            "type": "string[]"
+          },
+          {
+            "components": [
+              {
+                "internalType": "uint256",
+                "name": "fee_fixed",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "fee_percBips",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "fee_min",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "fee_max",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "ccy_perMillion",
+                "type": "uint256"
+              },
+              {
+                "internalType": "bool",
+                "name": "ccy_mirrorFee",
+                "type": "bool"
+              }
+            ],
+            "internalType": "struct StructLib.SetFeeArgs",
+            "name": "origTokFee",
+            "type": "tuple"
+          },
+          {
+            "internalType": "uint16",
+            "name": "origCcyFee_percBips_ExFee",
+            "type": "uint16"
+          },
+          {
+            "internalType": "address payable",
+            "name": "originator",
+            "type": "address"
+          }
+        ],
+        "internalType": "struct StructLib.SecTokenBatch[]",
+        "name": "batches",
+        "type": "tuple[]"
+      },
+      {
+        "internalType": "uint64",
+        "name": "_batches_currentMax_id",
+        "type": "uint64"
+      }
+    ],
+    "name": "loadSecTokenBatch",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function",
+    "signature": "0x0db0742d"
+  },
+  {
+    "inputs": [
+      { "internalType": "uint256", "name": "tokTypeId", "type": "uint256" },
+      { "internalType": "uint256", "name": "mintQty", "type": "uint256" },
+      { "internalType": "int64", "name": "mintSecTokenCount", "type": "int64" },
+      {
+        "internalType": "address payable",
+        "name": "batchOwner",
+        "type": "address"
+      },
+      {
+        "components": [
+          { "internalType": "uint256", "name": "fee_fixed", "type": "uint256" },
+          {
+            "internalType": "uint256",
+            "name": "fee_percBips",
+            "type": "uint256"
+          },
+          { "internalType": "uint256", "name": "fee_min", "type": "uint256" },
+          { "internalType": "uint256", "name": "fee_max", "type": "uint256" },
+          {
+            "internalType": "uint256",
+            "name": "ccy_perMillion",
+            "type": "uint256"
+          },
+          { "internalType": "bool", "name": "ccy_mirrorFee", "type": "bool" }
+        ],
+        "internalType": "struct StructLib.SetFeeArgs",
+        "name": "originatorFee",
+        "type": "tuple"
+      },
+      {
+        "internalType": "uint16",
+        "name": "origCcyFee_percBips_ExFee",
+        "type": "uint16"
+      },
+      { "internalType": "string[]", "name": "metaKeys", "type": "string[]" },
+      { "internalType": "string[]", "name": "metaValues", "type": "string[]" }
+    ],
+    "name": "mintSecTokenBatch",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function",
+    "signature": "0x017cbc35"
+  },
+  {
+    "inputs": [],
+    "name": "name",
+    "outputs": [{ "internalType": "string", "name": "", "type": "string" }],
+    "stateMutability": "view",
+    "type": "function",
+    "constant": true,
+    "signature": "0x06fdde03"
+  },
+  {
+    "inputs": [],
+    "name": "readOnly",
+    "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }],
+    "stateMutability": "view",
+    "type": "function",
+    "constant": true,
+    "signature": "0xfd736ec3"
+  },
+  {
+    "inputs": [
+      { "internalType": "uint256", "name": "ccyTypeId", "type": "uint256" },
+      { "internalType": "address", "name": "ledgerOwner", "type": "address" },
+      {
+        "components": [
+          { "internalType": "uint256", "name": "fee_fixed", "type": "uint256" },
+          {
+            "internalType": "uint256",
+            "name": "fee_percBips",
+            "type": "uint256"
+          },
+          { "internalType": "uint256", "name": "fee_min", "type": "uint256" },
+          { "internalType": "uint256", "name": "fee_max", "type": "uint256" },
+          {
+            "internalType": "uint256",
+            "name": "ccy_perMillion",
+            "type": "uint256"
+          },
+          { "internalType": "bool", "name": "ccy_mirrorFee", "type": "bool" }
+        ],
+        "internalType": "struct StructLib.SetFeeArgs",
+        "name": "feeArgs",
+        "type": "tuple"
+      }
+    ],
+    "name": "setFee_CcyType",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function",
+    "signature": "0xf090df5d"
+  },
+  {
+    "inputs": [
+      { "internalType": "uint256", "name": "tokTypeId", "type": "uint256" },
+      { "internalType": "address", "name": "ledgerOwner", "type": "address" },
+      {
+        "components": [
+          { "internalType": "uint256", "name": "fee_fixed", "type": "uint256" },
+          {
+            "internalType": "uint256",
+            "name": "fee_percBips",
+            "type": "uint256"
+          },
+          { "internalType": "uint256", "name": "fee_min", "type": "uint256" },
+          { "internalType": "uint256", "name": "fee_max", "type": "uint256" },
+          {
+            "internalType": "uint256",
+            "name": "ccy_perMillion",
+            "type": "uint256"
+          },
+          { "internalType": "bool", "name": "ccy_mirrorFee", "type": "bool" }
+        ],
+        "internalType": "struct StructLib.SetFeeArgs",
+        "name": "feeArgs",
+        "type": "tuple"
+      }
+    ],
+    "name": "setFee_TokType",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function",
+    "signature": "0xa8bd9968"
+  },
+  {
+    "inputs": [
+      { "internalType": "uint64", "name": "batchId", "type": "uint64" },
+      {
+        "internalType": "uint16",
+        "name": "origCcyFee_percBips_ExFee",
+        "type": "uint16"
+      }
+    ],
+    "name": "setOriginatorFeeCurrencyBatch",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function",
+    "signature": "0x5126dad7"
+  },
+  {
+    "inputs": [
+      { "internalType": "uint64", "name": "batchId", "type": "uint64" },
+      {
+        "components": [
+          { "internalType": "uint256", "name": "fee_fixed", "type": "uint256" },
+          {
+            "internalType": "uint256",
+            "name": "fee_percBips",
+            "type": "uint256"
+          },
+          { "internalType": "uint256", "name": "fee_min", "type": "uint256" },
+          { "internalType": "uint256", "name": "fee_max", "type": "uint256" },
+          {
+            "internalType": "uint256",
+            "name": "ccy_perMillion",
+            "type": "uint256"
+          },
+          { "internalType": "bool", "name": "ccy_mirrorFee", "type": "bool" }
+        ],
+        "internalType": "struct StructLib.SetFeeArgs",
+        "name": "originatorFee",
+        "type": "tuple"
+      }
+    ],
+    "name": "setOriginatorFeeTokenBatch",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function",
+    "signature": "0x06389736"
+  },
+  {
+    "inputs": [
+      { "internalType": "bool", "name": "readOnlyNewState", "type": "bool" }
+    ],
+    "name": "setReadOnly",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function",
+    "signature": "0x10ea6b34"
+  },
+  {
+    "inputs": [
+      { "internalType": "uint256", "name": "base_id", "type": "uint256" },
+      { "internalType": "uint256", "name": "currentMax_id", "type": "uint256" },
+      {
+        "internalType": "uint256",
+        "name": "totalMintedQty",
+        "type": "uint256"
+      },
+      { "internalType": "uint256", "name": "totalBurnedQty", "type": "uint256" }
+    ],
+    "name": "setTokenTotals",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function",
+    "signature": "0x7f2f97b1"
+  },
+  {
+    "inputs": [
+      {
+        "components": [
+          { "internalType": "address", "name": "ledger_A", "type": "address" },
+          { "internalType": "address", "name": "ledger_B", "type": "address" },
+          { "internalType": "uint256", "name": "qty_A", "type": "uint256" },
+          {
+            "internalType": "uint256[]",
+            "name": "k_stIds_A",
+            "type": "uint256[]"
+          },
+          {
+            "internalType": "uint256",
+            "name": "tokTypeId_A",
+            "type": "uint256"
+          },
+          { "internalType": "uint256", "name": "qty_B", "type": "uint256" },
+          {
+            "internalType": "uint256[]",
+            "name": "k_stIds_B",
+            "type": "uint256[]"
+          },
+          {
+            "internalType": "uint256",
+            "name": "tokTypeId_B",
+            "type": "uint256"
+          },
+          {
+            "internalType": "int256",
+            "name": "ccy_amount_A",
+            "type": "int256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "ccyTypeId_A",
+            "type": "uint256"
+          },
+          {
+            "internalType": "int256",
+            "name": "ccy_amount_B",
+            "type": "int256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "ccyTypeId_B",
+            "type": "uint256"
+          },
+          { "internalType": "bool", "name": "applyFees", "type": "bool" },
+          {
+            "internalType": "address",
+            "name": "feeAddrOwner",
+            "type": "address"
+          },
+          {
+            "internalType": "enum StructLib.TransferType",
+            "name": "transferType",
+            "type": "uint8"
+          }
+        ],
+        "internalType": "struct StructLib.TransferArgs",
+        "name": "a",
+        "type": "tuple"
+      }
+    ],
+    "name": "transferOrTrade",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function",
+    "signature": "0xa05e1c7d"
+  },
+  {
+    "inputs": [
+      {
+        "components": [
+          { "internalType": "address", "name": "ledger_A", "type": "address" },
+          { "internalType": "address", "name": "ledger_B", "type": "address" },
+          { "internalType": "uint256", "name": "qty_A", "type": "uint256" },
+          {
+            "internalType": "uint256[]",
+            "name": "k_stIds_A",
+            "type": "uint256[]"
+          },
+          {
+            "internalType": "uint256",
+            "name": "tokTypeId_A",
+            "type": "uint256"
+          },
+          { "internalType": "uint256", "name": "qty_B", "type": "uint256" },
+          {
+            "internalType": "uint256[]",
+            "name": "k_stIds_B",
+            "type": "uint256[]"
+          },
+          {
+            "internalType": "uint256",
+            "name": "tokTypeId_B",
+            "type": "uint256"
+          },
+          {
+            "internalType": "int256",
+            "name": "ccy_amount_A",
+            "type": "int256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "ccyTypeId_A",
+            "type": "uint256"
+          },
+          {
+            "internalType": "int256",
+            "name": "ccy_amount_B",
+            "type": "int256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "ccyTypeId_B",
+            "type": "uint256"
+          },
+          { "internalType": "bool", "name": "applyFees", "type": "bool" },
+          {
+            "internalType": "address",
+            "name": "feeAddrOwner",
+            "type": "address"
+          },
+          {
+            "internalType": "enum StructLib.TransferType",
+            "name": "transferType",
+            "type": "uint8"
+          }
+        ],
+        "internalType": "struct StructLib.TransferArgs",
+        "name": "a",
+        "type": "tuple"
+      }
+    ],
+    "name": "transfer_feePreview",
+    "outputs": [
+      {
+        "components": [
+          { "internalType": "uint256", "name": "fee_ccy_A", "type": "uint256" },
+          { "internalType": "uint256", "name": "fee_ccy_B", "type": "uint256" },
+          { "internalType": "uint256", "name": "fee_tok_A", "type": "uint256" },
+          { "internalType": "uint256", "name": "fee_tok_B", "type": "uint256" },
+          { "internalType": "address", "name": "fee_to", "type": "address" },
+          {
+            "internalType": "uint256",
+            "name": "origTokFee_qty",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint64",
+            "name": "origTokFee_batchId",
+            "type": "uint64"
+          },
+          {
+            "components": [
+              {
+                "internalType": "uint256",
+                "name": "fee_fixed",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "fee_percBips",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "fee_min",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "fee_max",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "ccy_perMillion",
+                "type": "uint256"
+              },
+              {
+                "internalType": "bool",
+                "name": "ccy_mirrorFee",
+                "type": "bool"
+              }
+            ],
+            "internalType": "struct StructLib.SetFeeArgs",
+            "name": "origTokFee_struct",
+            "type": "tuple"
+          }
+        ],
+        "internalType": "struct StructLib.FeesCalc[257]",
+        "name": "feesAll",
+        "type": "tuple[257]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function",
+    "constant": true,
+    "signature": "0xe5a6f3d0"
+  },
+  {
+    "inputs": [
+      {
+        "components": [
+          { "internalType": "address", "name": "ledger_A", "type": "address" },
+          { "internalType": "address", "name": "ledger_B", "type": "address" },
+          { "internalType": "uint256", "name": "qty_A", "type": "uint256" },
+          {
+            "internalType": "uint256[]",
+            "name": "k_stIds_A",
+            "type": "uint256[]"
+          },
+          {
+            "internalType": "uint256",
+            "name": "tokTypeId_A",
+            "type": "uint256"
+          },
+          { "internalType": "uint256", "name": "qty_B", "type": "uint256" },
+          {
+            "internalType": "uint256[]",
+            "name": "k_stIds_B",
+            "type": "uint256[]"
+          },
+          {
+            "internalType": "uint256",
+            "name": "tokTypeId_B",
+            "type": "uint256"
+          },
+          {
+            "internalType": "int256",
+            "name": "ccy_amount_A",
+            "type": "int256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "ccyTypeId_A",
+            "type": "uint256"
+          },
+          {
+            "internalType": "int256",
+            "name": "ccy_amount_B",
+            "type": "int256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "ccyTypeId_B",
+            "type": "uint256"
+          },
+          { "internalType": "bool", "name": "applyFees", "type": "bool" },
+          {
+            "internalType": "address",
+            "name": "feeAddrOwner",
+            "type": "address"
+          },
+          {
+            "internalType": "enum StructLib.TransferType",
+            "name": "transferType",
+            "type": "uint8"
+          }
+        ],
+        "internalType": "struct StructLib.TransferArgs",
+        "name": "a",
+        "type": "tuple"
+      }
+    ],
+    "name": "transfer_feePreview_ExchangeOnly",
+    "outputs": [
+      {
+        "components": [
+          { "internalType": "uint256", "name": "fee_ccy_A", "type": "uint256" },
+          { "internalType": "uint256", "name": "fee_ccy_B", "type": "uint256" },
+          { "internalType": "uint256", "name": "fee_tok_A", "type": "uint256" },
+          { "internalType": "uint256", "name": "fee_tok_B", "type": "uint256" },
+          { "internalType": "address", "name": "fee_to", "type": "address" },
+          {
+            "internalType": "uint256",
+            "name": "origTokFee_qty",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint64",
+            "name": "origTokFee_batchId",
+            "type": "uint64"
+          },
+          {
+            "components": [
+              {
+                "internalType": "uint256",
+                "name": "fee_fixed",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "fee_percBips",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "fee_min",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "fee_max",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "ccy_perMillion",
+                "type": "uint256"
+              },
+              {
+                "internalType": "bool",
+                "name": "ccy_mirrorFee",
+                "type": "bool"
+              }
+            ],
+            "internalType": "struct StructLib.SetFeeArgs",
+            "name": "origTokFee_struct",
+            "type": "tuple"
+          }
+        ],
+        "internalType": "struct StructLib.FeesCalc[1]",
+        "name": "feesAll",
+        "type": "tuple[1]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function",
+    "constant": true,
+    "signature": "0x3367ad09"
+  },
+  {
+    "inputs": [
+      { "internalType": "address[]", "name": "addr", "type": "address[]" }
+    ],
+    "name": "whitelistMany",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function",
+    "signature": "0xa77f7c8c"
+  },
+  {
+    "inputs": [],
+    "name": "getContractType",
+    "outputs": [
+      {
+        "internalType": "enum StructLib.ContractType",
+        "name": "",
+        "type": "uint8"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function",
+    "constant": true,
+    "signature": "0xc51a29e0"
+  },
+  {
+    "inputs": [],
+    "name": "getContractSeal",
+    "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }],
+    "stateMutability": "view",
+    "type": "function",
+    "constant": true,
+    "signature": "0x1101895a"
+  },
+  {
+    "inputs": [],
+    "name": "sealContract",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function",
+    "signature": "0x68bd580e"
+  },
+  {
+    "inputs": [],
+    "name": "version",
+    "outputs": [{ "internalType": "string", "name": "", "type": "string" }],
+    "stateMutability": "view",
+    "type": "function",
+    "constant": true,
+    "signature": "0x54fd4d50"
+  },
+  {
+    "inputs": [],
+    "name": "unit",
+    "outputs": [{ "internalType": "string", "name": "", "type": "string" }],
+    "stateMutability": "view",
+    "type": "function",
+    "constant": true,
+    "signature": "0x907af6c0"
+  }
+]
