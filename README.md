@@ -1,6 +1,6 @@
-# SDAX Subgraph - Blockchain Indexer
+# Security Token Master Subgraph - Blockchain Indexer
 
-### Sub-graph Blockchain Indexer on Binance Smart Chain for SDAX digital assets exchange for the listing and trading of asset-backed digital securities. 
+### Sub-graph blockchain indexer for the listing and trading of asset-backed digital securities based on the security token master framework.
 
 ![Version](https://img.shields.io/badge/version-0.1.0-blue.svg?cacheSeconds=2592000)
 ![Prerequisite](https://img.shields.io/badge/node-%3E%3D10.0-blue.svg)
